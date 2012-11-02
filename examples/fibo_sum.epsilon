@@ -1,6 +1,5 @@
 function (a1 a2 N) {
 #this function takes as input a1 a2 N and returns sum and fiboN#
-
     if (N==1) {
         fibo = a1
         sum = a1
