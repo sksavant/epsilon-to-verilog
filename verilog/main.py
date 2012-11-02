@@ -32,7 +32,7 @@ the_epsilon.register_backend(vb)
 the_epsilon.run_backend()
 
 
-the_epsilon.dump_ast()
-the_epsilon.dump_cfg()
-the_epsilon.dump_sim_assembly()
+#the_epsilon.dump_ast()
+#the_epsilon.dump_cfg()
+#the_epsilon.dump_sim_assembly()
 the_epsilon.run_simulator()
