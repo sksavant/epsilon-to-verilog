@@ -1,0 +1,16 @@
+function(N) {
+	
+# this function calculates the sum of first n numbers #
+	i = 0
+	sum = 0
+	c = 1
+	while (c) {
+		sum = sum + i
+		i = i+1
+		if(i>=N) {
+			c = 0
+		}
+	}
+	
+	return(sum)
+}

@@ -1,0 +1,17 @@
+function (a1 a2 a3) {
+# this function calculates the greatest amongst the three entered numbers #
+    
+    ans = a1
+    if (a2>a1) {
+        ans = a2
+        if(a3>a2) {
+            ans = a3
+        }
+    }
+    else {
+        if(a3>a1) {
+        ans = a3
+        }
+    }
+    return (ans)
+}

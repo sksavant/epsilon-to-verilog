@@ -1,0 +1,21 @@
+function (op a b) {
+# operate op on a and b #
+	if (op == 1) {
+		ans = a+b
+	}
+	else {
+		if(op == 2) {
+			ans = a*b
+		}
+		else {
+			if(op == 3) {
+				ans = a-b
+			}
+			else {
+				ans = a/b
+			}
+		}
+	}
+return(a b ans)
+}
+		
