@@ -3,6 +3,7 @@ from optparse import OptionParser
 sys.path.append('$newhome/epsilon/epsilon-1.0/epsilon_package/')
 
 import epsilon
+from verilog import VerilogWriter
 
 parser = OptionParser("usage: %epsilon [options] filename",
             version="epsilon 1.0")
@@ -30,15 +31,20 @@ the_epsilon.run_frontend(options.source_filename)
 #  - variable_list                                                          #
 #  - input_variable_list                                                    #
 #  - output_variable_list                                                   #
-# 
+#
 #############################################################################
 class VerilogBackend(epsilon.Backend):
     def run(self):
         print 'Verilog backend up and running'
         temp_cfg = self.parent.the_cfg.root
         self.print_info(temp_cfg)
+        self.verilog_writer = VerilogWriter("function")
+        vw = self.verilog_writer
+        vw.print_init(temp_cfg.input_variable_list,temp_cfg.output_variable_list)
+        vw.print_registers(temp_cfg)
+        vw.print_final()
         return
-    
+
     def print_info(self,cfg):
         print 'Printing the info of the cfg...'
         #print self.parent
@@ -59,10 +65,13 @@ class VerilogBackend(epsilon.Backend):
             print _v.name
         print ""
         print "There is/are",len(_bbl),"basicblocks"
-        #for x in temp_cfg.basicblock_list:
-        #    print x
+        for x in cfg.basicblock_list:
+            try:
+                print x.show()
+            except AttributeError:
+                pass
         return
-    
+
 #############################################################################
 ## End of VerilogBackend Class                                              #
 #############################################################################
@@ -74,4 +83,4 @@ the_epsilon.run_backend()
 #the_epsilon.dump_ast()
 #the_epsilon.dump_cfg()
 #the_epsilon.dump_sim_assembly()
-the_epsilon.run_simulator()
+#the_epsilon.run_simulator()
