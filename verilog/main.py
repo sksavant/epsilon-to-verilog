@@ -38,10 +38,11 @@ class VerilogBackend(epsilon.Backend):
         print 'Verilog backend up and running'
         temp_cfg = self.parent.the_cfg.root
         self.print_info(temp_cfg)
-        self.verilog_writer = VerilogWriter("function")
+        self.verilog_writer = VerilogWriter("function",temp_cfg)
         vw = self.verilog_writer
-        vw.print_init(temp_cfg.input_variable_list,temp_cfg.output_variable_list)
-        vw.print_registers(temp_cfg)
+        vw.print_init()
+        vw.print_registers()
+        vw.print_states()
         vw.print_final()
         return
 
