@@ -47,12 +47,13 @@ class VerilogWriter:
         state = bb.identity
         self.out.write("\t// Corresponding code for BasicBlock "+str(state)+"\n")
         self.out.write("\talways@ (negedge clk) begin\n")
-
-        self.out.write("\tend\n\n")
         self.print_if("state","==",tobinary(state,self.no_of_bits))
+        #State transitions go here.
+        self.out.write("\t\tend\n")
+        self.out.write("\tend\n\n")
 
     def print_if(self,lhs,op,rhs):
-        self.out.write("if ("+lhs+" "+op+" "+ rhs)
+        self.out.write("\t\tif ("+lhs+" "+op+" "+ rhs + ") begin\n")
 
     def print_final(self):
         self.out.write("endmodule\n")
