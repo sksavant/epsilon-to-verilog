@@ -17,20 +17,20 @@ the_epsilon.run_frontend(options.source_filename)
 
 #############################################################################
 #############################################################################
-##VerilogBackend class is an example verilog backend which contains         #
-# the code to write which will write to a verilog file given the            #
-# cfg (control flow graph). The class should contain a "run(self)" method   #
-####                                                                    #####
-# Following is some explanation of the structure of the epsilon, cfg        #
-# and how to go about writing the verilog backend :                         #
-# 'parent' of this class gives the epsilon.Epsilon object (the main object) #
-# epsilon.Epsilon consists of a epsilon.CFG object "the_cfg"                #
-# the_cfg.root is a instance object of cfg.Function instance (~ temp_cfg)   #
-# cfg.Function consists of lists of various things like :                   #
-#  - basicblock_list                                                        #
-#  - variable_list                                                          #
-#  - input_variable_list                                                    #
-#  - output_variable_list                                                   #
+##VerilogBackend class is an example verilog backend which contains
+# the code to write which will write to a verilog file given the
+# cfg (control flow graph). The class should contain a "run(self)" method
+####
+# Following is some explanation of the structure of the epsilon, cfg
+# and how to go about writing the verilog backend :
+# 'parent' of this class gives the epsilon.Epsilon object (the main object)
+# epsilon.Epsilon consists of a epsilon.CFG object "the_cfg"
+# the_cfg.root is a instance object of cfg.Function instance (~ temp_cfg)
+# cfg.Function consists of lists of various things like :
+#  - basicblock_list
+#  - variable_list
+#  - input_variable_list
+#  - output_variable_list
 #
 #############################################################################
 class VerilogBackend(epsilon.Backend):
