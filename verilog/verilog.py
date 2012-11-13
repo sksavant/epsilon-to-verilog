@@ -3,13 +3,13 @@
 # Each instruction is considered a state and the transitions are defined in
 # that way.
 class VerilogWriter:
-    #The intializer, if takes in cfg and the verilog filename from the VerilogBackend class
+    ## The intializer, if takes in cfg and the verilog filename from the VerilogBackend class
     def __init__(self,name,cfg):
         print "Starting printing to verilog"
         self.out = open(name+".v",'w+')
         self.cfg = cfg
 
-    #The initial printing to file, prints module name and the ports in it.
+    ## The initial printing to file, prints module name and the ports in it.
     def print_init(self):
         print "Printing the interface"
         in_list = self.cfg.input_variable_list
@@ -25,7 +25,7 @@ class VerilogWriter:
         self.out.seek(-2,1)
         self.out.write(");\n")
 
-    # BUG TODO : What to do if variable is both input and output.
+    ## BUG TODO : What to do if variable is both input and output.
     # BUG TODO : Scheduling and Allocation is not good!
     # This function prints the input output port declarations and other
     # registers to the verilog file
@@ -47,7 +47,7 @@ class VerilogWriter:
         self.no_of_bits = bits_in_state
         self.out.write("reg ["+str(bits_in_state-1)+":0] state;\n\n")
 
-    # This function finds the number of states required going through all the
+    ## This function finds the number of states required going through all the
     # basic blocks in the cfg
     def find_no_of_states(self):
         n_states = 0
@@ -59,7 +59,7 @@ class VerilogWriter:
             n_states = n_states +bb.number_of_instructions
         return n_states
 
-    # The main function called which invokes the printing of all the basic
+    ## The main function called which invokes the printing of all the basic
     # blocks in a loop
     def print_states(self):
         print "Printing the state transitions"
@@ -67,7 +67,7 @@ class VerilogWriter:
             print ""
             self.print_basic_block(bb)
 
-    # prints a basic block in a always @ () block in verilog
+    ## prints a basic block in a always @ () block in verilog
     # It loops though all instructions and invokes the printing of them
     def print_basic_block(self,bb):
         self.out.write("\t// Corresponding code for BasicBlock "+str(bb.identity)+"\n")
@@ -91,7 +91,7 @@ class VerilogWriter:
         #debugging etc ... ignore : TODO to clean up
         self.out.write("\tend\n\n")
 
-    #Prints the  arithmetic instruction with lhs op and rhs
+    ## Prints the  arithmetic instruction with lhs op and rhs
     def print_instruction(self, instr, bb):
         self.print_arith(instr.lhs.name,instr.rhs_1.name,instr.op.name,instr.rhs_2.name)
         print bb.number_of_instructions, bb.number_of_children
@@ -102,11 +102,11 @@ class VerilogWriter:
         for ins in bb.instruction_list:
             print ins
 
-    # Formatted arithmetic instruction printing to file
+    ## Formatted arithmetic instruction printing to file
     def print_arith(self,var,lhs,op,rhs):
         self.out.write("\t\t\t"+var+" <= "+lhs+" "+op+" "+rhs+";\n")
 
-    # Prints a conditional jump instruction uses several methods
+    ## Prints a conditional jump instruction uses several methods
     def print_condition(self,bb,condition):
         print "Printing condition :P"
         self.print_if(condition.rhs_1.name,condition.op.name,condition.rhs_2.name)
@@ -115,7 +115,7 @@ class VerilogWriter:
         self.print_state_change(self.next_state(bb.child_false))
         self.out.write("\t\tend\n")
 
-    #Gives the next state number given the next basicblock to jump to
+    ## Gives the next state number given the next basicblock to jump to
     def next_state(self,next_bb):
         if next_bb.number_of_instructions:
             next_state = self.bb_states[next_bb.identity]
@@ -123,21 +123,21 @@ class VerilogWriter:
             next_state = self.bb_states[next_bb.identity]+1
         return next_state
 
-    # Prints the state change verilog code to a given state
+    ## Prints the state change verilog code to a given state
     def print_state_change(self,state):
         self.out.write("\t\t\tstate <= "+tobinary(state,self.no_of_bits)+";\n")
 
-    #Prints a if statement given the lhs op and rhs
+    ## Prints a if statement given the lhs op and rhs
     def print_if(self,lhs,op,rhs):
         self.out.write("\t\tif ("+str(lhs)+" "+str(op)+" "+ str(rhs) + ") begin\n")
 
-    #When finished, prints a endmodule
+    ## When finished, prints a endmodule
     def print_final(self):
         self.out.write("endmodule\n")
         print "Finished writing module"
         self.out.close()
 
-#Other function to find no_of_bits required for the given no_of_states
+## Other function to find no_of_bits required for the given no_of_states
 def no_of_bits(states):
     n = states
     nbits=0
@@ -146,7 +146,7 @@ def no_of_bits(states):
         nbits=nbits+1
     return nbits
 
-#Changes a state to binary string of nbits bits
+## Changes a state to binary string of nbits bits
 def tobinary(state, nbits):
     n = state
     bit_string = ""
