@@ -97,7 +97,9 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:afa63e04f7089782b2bd670770b56ba0f"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceverilog.html#afa63e04f7089782b2bd670770b56ba0f">no_of_bits</a></td></tr>
+<tr class="memdesc:afa63e04f7089782b2bd670770b56ba0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Other function to find no_of_bits required for the given no_of_states.  <a href="#afa63e04f7089782b2bd670770b56ba0f"></a><br/></td></tr>
 <tr class="memitem:aa9aede2b71070152295f77e1a16756a8"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceverilog.html#aa9aede2b71070152295f77e1a16756a8">tobinary</a></td></tr>
+<tr class="memdesc:aa9aede2b71070152295f77e1a16756a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes a state to binary string of nbits bits.  <a href="#aa9aede2b71070152295f77e1a16756a8"></a><br/></td></tr>
 </table>
 <h2>Function Documentation</h2>
 <a class="anchor" id="afa63e04f7089782b2bd670770b56ba0f"></a>
@@ -114,17 +116,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Other function to find no_of_bits required for the given no_of_states. </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00141">141</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 <div class="fragment"><div class="line"><a name="l00141"></a><span class="lineno"><a class="code" href="namespaceverilog.html#afa63e04f7089782b2bd670770b56ba0f">  141</a></span>&#160;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keyword">def </span><a class="code" href="namespaceverilog.html#afa63e04f7089782b2bd670770b56ba0f">no_of_bits</a>(states):</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keyword">def </span><a class="code" href="namespaceverilog.html#afa63e04f7089782b2bd670770b56ba0f" title="Other function to find no_of_bits required for the given no_of_states.">no_of_bits</a>(states):</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    n = states</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    nbits=0</div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordflow">while</span> n&gt;0:</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        n=n/2</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        nbits=nbits+1</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keywordflow">return</span> nbits</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
-<span class="comment">#Changes a state to binary string of nbits bits</span></div>
+</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -152,11 +155,13 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Changes a state to binary string of nbits bits. </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00150">150</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 
 <p>Referenced by <a class="el" href="verilog_8py_source.html#l00127">verilog.VerilogWriter.print_state_change()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00150"></a><span class="lineno"><a class="code" href="namespaceverilog.html#aa9aede2b71070152295f77e1a16756a8">  150</a></span>&#160;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="keyword">def </span><a class="code" href="namespaceverilog.html#aa9aede2b71070152295f77e1a16756a8">tobinary</a>(state, nbits):</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="keyword">def </span><a class="code" href="namespaceverilog.html#aa9aede2b71070152295f77e1a16756a8" title="Changes a state to binary string of nbits bits.">tobinary</a>(state, nbits):</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    n = state</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    bit_string = <span class="stringliteral">&quot;&quot;</span></div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    while(n&gt;0):</div>
@@ -184,7 +189,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 13 2012 20:05:14 for Epsilon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 13 2012 20:12:40 for Epsilon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

@@ -102,18 +102,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7b6a78de9b31b9a8f03f35e9bbff4a6c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classverilog_1_1VerilogWriter.html#a7b6a78de9b31b9a8f03f35e9bbff4a6c">__init__</a></td></tr>
+<tr class="memdesc:a7b6a78de9b31b9a8f03f35e9bbff4a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The intializer, if takes in cfg and the verilog filename from the VerilogBackend class.  <a href="#a7b6a78de9b31b9a8f03f35e9bbff4a6c"></a><br/></td></tr>
 <tr class="memitem:a8c07170406cb94ca72b23bb031e95a1e"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classverilog_1_1VerilogWriter.html#a8c07170406cb94ca72b23bb031e95a1e">print_init</a></td></tr>
+<tr class="memdesc:a8c07170406cb94ca72b23bb031e95a1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The initial printing to file, prints module name and the ports in it.  <a href="#a8c07170406cb94ca72b23bb031e95a1e"></a><br/></td></tr>
 <tr class="memitem:a040b56da1d2b7924204f779a31cbc826"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classverilog_1_1VerilogWriter.html#a040b56da1d2b7924204f779a31cbc826">print_registers</a></td></tr>
+<tr class="memdesc:a040b56da1d2b7924204f779a31cbc826"><td class="mdescLeft">&#160;</td><td class="mdescRight">BUG TODO : What to do if variable is both input and output.  <a href="#a040b56da1d2b7924204f779a31cbc826"></a><br/></td></tr>
 <tr class="memitem:a3122cf081873ab69f12e5ede767efd0d"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classverilog_1_1VerilogWriter.html#a3122cf081873ab69f12e5ede767efd0d">find_no_of_states</a></td></tr>
+<tr class="memdesc:a3122cf081873ab69f12e5ede767efd0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function finds the number of states required going through all the basic blocks in the cfg.  <a href="#a3122cf081873ab69f12e5ede767efd0d"></a><br/></td></tr>
 <tr class="memitem:ad519add0dcdd196e0b8a287adec554fe"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classverilog_1_1VerilogWriter.html#ad519add0dcdd196e0b8a287adec554fe">print_states</a></td></tr>
+<tr class="memdesc:ad519add0dcdd196e0b8a287adec554fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">The main function called which invokes the printing of all the basic blocks in a loop.  <a href="#ad519add0dcdd196e0b8a287adec554fe"></a><br/></td></tr>
 <tr class="memitem:ac4e6d8d42a1d3daa1bbc55ee304aba59"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classverilog_1_1VerilogWriter.html#ac4e6d8d42a1d3daa1bbc55ee304aba59">print_basic_block</a></td></tr>
+<tr class="memdesc:ac4e6d8d42a1d3daa1bbc55ee304aba59"><td class="mdescLeft">&#160;</td><td class="mdescRight">prints a basic block in a always @ () block in verilog It loops though all instructions and invokes the printing of them  <a href="#ac4e6d8d42a1d3daa1bbc55ee304aba59"></a><br/></td></tr>
 <tr class="memitem:a58b373cc0f4d3ffaa2aadbdff4b25dfc"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classverilog_1_1VerilogWriter.html#a58b373cc0f4d3ffaa2aadbdff4b25dfc">print_instruction</a></td></tr>
+<tr class="memdesc:a58b373cc0f4d3ffaa2aadbdff4b25dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the arithmetic instruction with lhs op and rhs.  <a href="#a58b373cc0f4d3ffaa2aadbdff4b25dfc"></a><br/></td></tr>
 <tr class="memitem:ac9d916fca41318438f2a8494aa4fe650"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classverilog_1_1VerilogWriter.html#ac9d916fca41318438f2a8494aa4fe650">print_arith</a></td></tr>
+<tr class="memdesc:ac9d916fca41318438f2a8494aa4fe650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formatted arithmetic instruction printing to file.  <a href="#ac9d916fca41318438f2a8494aa4fe650"></a><br/></td></tr>
 <tr class="memitem:a9ea4d56c661c133f55cb56d81db6a1f3"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classverilog_1_1VerilogWriter.html#a9ea4d56c661c133f55cb56d81db6a1f3">print_condition</a></td></tr>
+<tr class="memdesc:a9ea4d56c661c133f55cb56d81db6a1f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a conditional jump instruction uses several methods.  <a href="#a9ea4d56c661c133f55cb56d81db6a1f3"></a><br/></td></tr>
 <tr class="memitem:aa9b9e157209b533bab3d3f549f0f4b12"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classverilog_1_1VerilogWriter.html#aa9b9e157209b533bab3d3f549f0f4b12">next_state</a></td></tr>
+<tr class="memdesc:aa9b9e157209b533bab3d3f549f0f4b12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives the next state number given the next basicblock to jump to.  <a href="#aa9b9e157209b533bab3d3f549f0f4b12"></a><br/></td></tr>
 <tr class="memitem:ab09dc6d0a15ffaa67b28add793781831"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classverilog_1_1VerilogWriter.html#ab09dc6d0a15ffaa67b28add793781831">print_state_change</a></td></tr>
+<tr class="memdesc:ab09dc6d0a15ffaa67b28add793781831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the state change verilog code to a given state.  <a href="#ab09dc6d0a15ffaa67b28add793781831"></a><br/></td></tr>
 <tr class="memitem:a5c664e2d790cb5f796a6bde2449a8d38"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classverilog_1_1VerilogWriter.html#a5c664e2d790cb5f796a6bde2449a8d38">print_if</a></td></tr>
+<tr class="memdesc:a5c664e2d790cb5f796a6bde2449a8d38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a if statement given the lhs op and rhs.  <a href="#a5c664e2d790cb5f796a6bde2449a8d38"></a><br/></td></tr>
 <tr class="memitem:acbf89c70a052ef80ba2371d659cc8ce6"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classverilog_1_1VerilogWriter.html#acbf89c70a052ef80ba2371d659cc8ce6">print_final</a></td></tr>
+<tr class="memdesc:acbf89c70a052ef80ba2371d659cc8ce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">When finished, prints a endmodule.  <a href="#acbf89c70a052ef80ba2371d659cc8ce6"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -158,9 +171,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The intializer, if takes in cfg and the verilog filename from the VerilogBackend class. </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00007">7</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 <div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#a7b6a78de9b31b9a8f03f35e9bbff4a6c">    7</a></span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a7b6a78de9b31b9a8f03f35e9bbff4a6c">__init__</a>(self,name,cfg):</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a7b6a78de9b31b9a8f03f35e9bbff4a6c" title="The intializer, if takes in cfg and the verilog filename from the VerilogBackend class.">__init__</a>(self,name,cfg):</div>
 <div class="line"><a name="l00009"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#ae5a4fa0ecae36afc8bf809fd0471aca5">    9</a></span>&#160;        <span class="keywordflow">print</span> <span class="stringliteral">&quot;Starting printing to verilog&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#a3fecf7c8747e880d7194c9c1da841e67">   10</a></span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#ae5a4fa0ecae36afc8bf809fd0471aca5">out</a> = open(name+<span class="stringliteral">&quot;.v&quot;</span>,<span class="stringliteral">&#39;w+&#39;</span>)</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#a3fecf7c8747e880d7194c9c1da841e67">cfg</a> = cfg</div>
@@ -183,11 +198,13 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>This function finds the number of states required going through all the basic blocks in the cfg. </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00052">52</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 
 <p>Referenced by <a class="el" href="verilog_8py_source.html#l00032">verilog.VerilogWriter.print_registers()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#a3122cf081873ab69f12e5ede767efd0d">   52</a></span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a3122cf081873ab69f12e5ede767efd0d">find_no_of_states</a>(self):</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a3122cf081873ab69f12e5ede767efd0d" title="This function finds the number of states required going through all the basic blocks in the cfg...">find_no_of_states</a>(self):</div>
 <div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#ab4a32e646b356912eb59f516f16a1fe9">   54</a></span>&#160;        n_states = 0</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#ab4a32e646b356912eb59f516f16a1fe9">bb_states</a> = []</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">for</span> bb <span class="keywordflow">in</span> self.cfg.basicblock_list:</div>
@@ -224,13 +241,15 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gives the next state number given the next basicblock to jump to. </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00119">119</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 
 <p>References <a class="el" href="verilog_8py_source.html#l00054">verilog.VerilogWriter.bb_states</a>.</p>
 
 <p>Referenced by <a class="el" href="verilog_8py_source.html#l00110">verilog.VerilogWriter.print_condition()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00119"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#aa9b9e157209b533bab3d3f549f0f4b12">  119</a></span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#aa9b9e157209b533bab3d3f549f0f4b12">next_state</a>(self,next_bb):</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#aa9b9e157209b533bab3d3f549f0f4b12" title="Gives the next state number given the next basicblock to jump to.">next_state</a>(self,next_bb):</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordflow">if</span> next_bb.number_of_instructions:</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            next_state = self.<a class="code" href="classverilog_1_1VerilogWriter.html#ab4a32e646b356912eb59f516f16a1fe9">bb_states</a>[next_bb.identity]</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">else</span>:</div>
@@ -282,11 +301,13 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Formatted arithmetic instruction printing to file. </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00106">106</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 
 <p>Referenced by <a class="el" href="verilog_8py_source.html#l00095">verilog.VerilogWriter.print_instruction()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00106"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#ac9d916fca41318438f2a8494aa4fe650">  106</a></span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#ac9d916fca41318438f2a8494aa4fe650">print_arith</a>(self,var,lhs,op,rhs):</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#ac9d916fca41318438f2a8494aa4fe650" title="Formatted arithmetic instruction printing to file.">print_arith</a>(self,var,lhs,op,rhs):</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        self.out.write(<span class="stringliteral">&quot;\t\t\t&quot;</span>+var+<span class="stringliteral">&quot; &lt;= &quot;</span>+lhs+<span class="stringliteral">&quot; &quot;</span>+op+<span class="stringliteral">&quot; &quot;</span>+rhs+<span class="stringliteral">&quot;;\n&quot;</span>)</div>
 </div>
 </div><!-- fragment -->
@@ -316,28 +337,30 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>prints a basic block in a always @ () block in verilog It loops though all instructions and invokes the printing of them </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00072">72</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 
 <p>Referenced by <a class="el" href="verilog_8py_source.html#l00064">verilog.VerilogWriter.print_states()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00072"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#ac4e6d8d42a1d3daa1bbc55ee304aba59">   72</a></span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#ac4e6d8d42a1d3daa1bbc55ee304aba59">print_basic_block</a>(self,bb):</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#ac4e6d8d42a1d3daa1bbc55ee304aba59" title="prints a basic block in a always @ () block in verilog It loops though all instructions and invokes t...">print_basic_block</a>(self,bb):</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        self.out.write(<span class="stringliteral">&quot;\t// Corresponding code for BasicBlock &quot;</span>+str(bb.identity)+<span class="stringliteral">&quot;\n&quot;</span>)</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        self.out.write(<span class="stringliteral">&quot;\talways@ (negedge clk) begin\n&quot;</span>)</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        rel_state = 1</div>
 <div class="line"><a name="l00077"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#a08b45a3c1769e7b3e12f1fc424fe34b3">   77</a></span>&#160;        <span class="keywordflow">for</span> instr <span class="keywordflow">in</span> bb.instruction_list:</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            self.<a class="code" href="classverilog_1_1VerilogWriter.html#a08b45a3c1769e7b3e12f1fc424fe34b3">current_state</a> = self.<a class="code" href="classverilog_1_1VerilogWriter.html#ab4a32e646b356912eb59f516f16a1fe9">bb_states</a>[bb.identity] + rel_state</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            self.<a class="code" href="classverilog_1_1VerilogWriter.html#a5c664e2d790cb5f796a6bde2449a8d38">print_if</a>(<span class="stringliteral">&quot;state&quot;</span>,<span class="stringliteral">&quot;==&quot;</span>,<a class="code" href="namespaceverilog.html#aa9aede2b71070152295f77e1a16756a8">tobinary</a>(self.<a class="code" href="classverilog_1_1VerilogWriter.html#a08b45a3c1769e7b3e12f1fc424fe34b3">current_state</a>, self.<a class="code" href="classverilog_1_1VerilogWriter.html#a451b3c21e9fe3643484516097b3f57a0">no_of_bits</a>))</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            self.<a class="code" href="classverilog_1_1VerilogWriter.html#a5c664e2d790cb5f796a6bde2449a8d38" title="Prints a if statement given the lhs op and rhs.">print_if</a>(<span class="stringliteral">&quot;state&quot;</span>,<span class="stringliteral">&quot;==&quot;</span>,<a class="code" href="namespaceverilog.html#aa9aede2b71070152295f77e1a16756a8" title="Changes a state to binary string of nbits bits.">tobinary</a>(self.<a class="code" href="classverilog_1_1VerilogWriter.html#a08b45a3c1769e7b3e12f1fc424fe34b3">current_state</a>, self.<a class="code" href="classverilog_1_1VerilogWriter.html#a451b3c21e9fe3643484516097b3f57a0">no_of_bits</a>))</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <span class="comment">#State transitions go here.</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            self.<a class="code" href="classverilog_1_1VerilogWriter.html#a58b373cc0f4d3ffaa2aadbdff4b25dfc">print_instruction</a>(instr,bb)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            self.<a class="code" href="classverilog_1_1VerilogWriter.html#a58b373cc0f4d3ffaa2aadbdff4b25dfc" title="Prints the arithmetic instruction with lhs op and rhs.">print_instruction</a>(instr,bb)</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            self.out.write(<span class="stringliteral">&quot;\t\tend\n&quot;</span>)</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            rel_state = rel_state + 1</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="comment">#After all the instructions in instruction list state the jump or conditional statement</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#a5c664e2d790cb5f796a6bde2449a8d38">print_if</a>(<span class="stringliteral">&quot;state&quot;</span>,<span class="stringliteral">&quot;==&quot;</span>,<a class="code" href="namespaceverilog.html#aa9aede2b71070152295f77e1a16756a8">tobinary</a>(self.<a class="code" href="classverilog_1_1VerilogWriter.html#ab4a32e646b356912eb59f516f16a1fe9">bb_states</a>[bb.identity],self.<a class="code" href="classverilog_1_1VerilogWriter.html#a451b3c21e9fe3643484516097b3f57a0">no_of_bits</a>))</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#a5c664e2d790cb5f796a6bde2449a8d38" title="Prints a if statement given the lhs op and rhs.">print_if</a>(<span class="stringliteral">&quot;state&quot;</span>,<span class="stringliteral">&quot;==&quot;</span>,<a class="code" href="namespaceverilog.html#aa9aede2b71070152295f77e1a16756a8" title="Changes a state to binary string of nbits bits.">tobinary</a>(self.<a class="code" href="classverilog_1_1VerilogWriter.html#ab4a32e646b356912eb59f516f16a1fe9">bb_states</a>[bb.identity],self.<a class="code" href="classverilog_1_1VerilogWriter.html#a451b3c21e9fe3643484516097b3f57a0">no_of_bits</a>))</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">if</span> bb.number_of_children == 1:</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            self.<a class="code" href="classverilog_1_1VerilogWriter.html#ab09dc6d0a15ffaa67b28add793781831">print_state_change</a>(self.<a class="code" href="classverilog_1_1VerilogWriter.html#ab4a32e646b356912eb59f516f16a1fe9">bb_states</a>[bb.child.identity])</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            self.<a class="code" href="classverilog_1_1VerilogWriter.html#ab09dc6d0a15ffaa67b28add793781831" title="Prints the state change verilog code to a given state.">print_state_change</a>(self.<a class="code" href="classverilog_1_1VerilogWriter.html#ab4a32e646b356912eb59f516f16a1fe9">bb_states</a>[bb.child.identity])</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">elif</span> bb.number_of_children == 2:</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="comment">#2 children \implies comparision?</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            self.<a class="code" href="classverilog_1_1VerilogWriter.html#a9ea4d56c661c133f55cb56d81db6a1f3">print_condition</a>(bb, bb.condition_instr)</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            self.<a class="code" href="classverilog_1_1VerilogWriter.html#a9ea4d56c661c133f55cb56d81db6a1f3" title="Prints a conditional jump instruction uses several methods.">print_condition</a>(bb, bb.condition_instr)</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        self.out.write(<span class="stringliteral">&quot;\t\tend\n&quot;</span>)</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="comment">#debugging etc ... ignore : TODO to clean up</span></div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        self.out.write(<span class="stringliteral">&quot;\tend\n\n&quot;</span>)</div>
@@ -375,16 +398,18 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Prints a conditional jump instruction uses several methods. </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00110">110</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 
 <p>References <a class="el" href="verilog_8py_source.html#l00119">verilog.VerilogWriter.next_state()</a>, <a class="el" href="verilog_8py_source.html#l00131">verilog.VerilogWriter.print_if()</a>, and <a class="el" href="verilog_8py_source.html#l00127">verilog.VerilogWriter.print_state_change()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00110"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#a9ea4d56c661c133f55cb56d81db6a1f3">  110</a></span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a9ea4d56c661c133f55cb56d81db6a1f3">print_condition</a>(self,bb,condition):</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a9ea4d56c661c133f55cb56d81db6a1f3" title="Prints a conditional jump instruction uses several methods.">print_condition</a>(self,bb,condition):</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">print</span> <span class="stringliteral">&quot;Printing condition :P&quot;</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#a5c664e2d790cb5f796a6bde2449a8d38">print_if</a>(condition.rhs_1.name,condition.op.name,condition.rhs_2.name)</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#ab09dc6d0a15ffaa67b28add793781831">print_state_change</a>(self.<a class="code" href="classverilog_1_1VerilogWriter.html#aa9b9e157209b533bab3d3f549f0f4b12">next_state</a>(bb.child_true))</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#a5c664e2d790cb5f796a6bde2449a8d38" title="Prints a if statement given the lhs op and rhs.">print_if</a>(condition.rhs_1.name,condition.op.name,condition.rhs_2.name)</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#ab09dc6d0a15ffaa67b28add793781831" title="Prints the state change verilog code to a given state.">print_state_change</a>(self.<a class="code" href="classverilog_1_1VerilogWriter.html#aa9b9e157209b533bab3d3f549f0f4b12" title="Gives the next state number given the next basicblock to jump to.">next_state</a>(bb.child_true))</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        self.out.write(<span class="stringliteral">&quot;\t\telse begin\n&quot;</span>)</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#ab09dc6d0a15ffaa67b28add793781831">print_state_change</a>(self.<a class="code" href="classverilog_1_1VerilogWriter.html#aa9b9e157209b533bab3d3f549f0f4b12">next_state</a>(bb.child_false))</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#ab09dc6d0a15ffaa67b28add793781831" title="Prints the state change verilog code to a given state.">print_state_change</a>(self.<a class="code" href="classverilog_1_1VerilogWriter.html#aa9b9e157209b533bab3d3f549f0f4b12" title="Gives the next state number given the next basicblock to jump to.">next_state</a>(bb.child_false))</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        self.out.write(<span class="stringliteral">&quot;\t\tend\n&quot;</span>)</div>
 </div>
 </div><!-- fragment -->
@@ -404,14 +429,15 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>When finished, prints a endmodule. </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00135">135</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 <div class="fragment"><div class="line"><a name="l00135"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#acbf89c70a052ef80ba2371d659cc8ce6">  135</a></span>&#160;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#acbf89c70a052ef80ba2371d659cc8ce6">print_final</a>(self):</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#acbf89c70a052ef80ba2371d659cc8ce6" title="When finished, prints a endmodule.">print_final</a>(self):</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        self.out.write(<span class="stringliteral">&quot;endmodule\n&quot;</span>)</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">print</span> <span class="stringliteral">&quot;Finished writing module&quot;</span></div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        self.out.close()</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<span class="comment">#Other function to find no_of_bits required for the given no_of_states</span></div>
+</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -451,11 +477,13 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Prints a if statement given the lhs op and rhs. </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00131">131</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 
 <p>Referenced by <a class="el" href="verilog_8py_source.html#l00110">verilog.VerilogWriter.print_condition()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00131"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#a5c664e2d790cb5f796a6bde2449a8d38">  131</a></span>&#160;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a5c664e2d790cb5f796a6bde2449a8d38">print_if</a>(self,lhs,op,rhs):</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a5c664e2d790cb5f796a6bde2449a8d38" title="Prints a if statement given the lhs op and rhs.">print_if</a>(self,lhs,op,rhs):</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        self.out.write(<span class="stringliteral">&quot;\t\tif (&quot;</span>+str(lhs)+<span class="stringliteral">&quot; &quot;</span>+str(op)+<span class="stringliteral">&quot; &quot;</span>+ str(rhs) + <span class="stringliteral">&quot;) begin\n&quot;</span>)</div>
 </div>
 </div><!-- fragment -->
@@ -475,9 +503,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The initial printing to file, prints module name and the ports in it. </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00013">13</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 <div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#a8c07170406cb94ca72b23bb031e95a1e">   13</a></span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a8c07170406cb94ca72b23bb031e95a1e">print_init</a>(self):</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a8c07170406cb94ca72b23bb031e95a1e" title="The initial printing to file, prints module name and the ports in it.">print_init</a>(self):</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">print</span> <span class="stringliteral">&quot;Printing the interface&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        in_list = self.cfg.input_variable_list</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        out_list = self.cfg.output_variable_list</div>
@@ -525,12 +555,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Prints the arithmetic instruction with lhs op and rhs. </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00095">95</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 
 <p>References <a class="el" href="verilog_8py_source.html#l00106">verilog.VerilogWriter.print_arith()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00095"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#a58b373cc0f4d3ffaa2aadbdff4b25dfc">   95</a></span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a58b373cc0f4d3ffaa2aadbdff4b25dfc">print_instruction</a>(self, instr, bb):</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#ac9d916fca41318438f2a8494aa4fe650">print_arith</a>(instr.lhs.name,instr.rhs_1.name,instr.op.name,instr.rhs_2.name)</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a58b373cc0f4d3ffaa2aadbdff4b25dfc" title="Prints the arithmetic instruction with lhs op and rhs.">print_instruction</a>(self, instr, bb):</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#ac9d916fca41318438f2a8494aa4fe650" title="Formatted arithmetic instruction printing to file.">print_arith</a>(instr.lhs.name,instr.rhs_1.name,instr.op.name,instr.rhs_2.name)</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">print</span> bb.number_of_instructions, bb.number_of_children</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">try</span>:</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="keywordflow">print</span> bb.condition,bb.condition_instr,<span class="stringliteral">&quot;Conditional ins&quot;</span></div>
@@ -556,11 +588,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>BUG TODO : What to do if variable is both input and output. </p>
+<p>BUG TODO : Scheduling and Allocation is not good! This function prints the input output port declarations and other registers to the verilog file </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00032">32</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 
 <p>References <a class="el" href="verilog_8py_source.html#l00052">verilog.VerilogWriter.find_no_of_states()</a>, and <a class="el" href="verilog_8py_source.html#l00047">verilog.VerilogWriter.no_of_bits</a>.</p>
 <div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#a040b56da1d2b7924204f779a31cbc826">   32</a></span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a040b56da1d2b7924204f779a31cbc826">print_registers</a>(self):</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#a040b56da1d2b7924204f779a31cbc826" title="BUG TODO : What to do if variable is both input and output.">print_registers</a>(self):</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">print</span> <span class="stringliteral">&quot;Printing the registers holding variables&quot;</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        inputs = self.cfg.input_variable_list</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        outputs = self.cfg.output_variable_list</div>
@@ -572,7 +607,7 @@ Public Attributes</h2></td></tr>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">for</span> var <span class="keywordflow">in</span> variables:</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">if</span> var <span class="keywordflow">not</span> <span class="keywordflow">in</span> inputs <span class="keywordflow">and</span> var <span class="keywordflow">not</span> <span class="keywordflow">in</span> outputs:</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                self.out.write(<span class="stringliteral">&quot;reg [31:0] &quot;</span> + var.name + <span class="stringliteral">&quot;;\n&quot;</span>)</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        no_of_states = self.<a class="code" href="classverilog_1_1VerilogWriter.html#a3122cf081873ab69f12e5ede767efd0d">find_no_of_states</a>() <span class="comment">#Each instruction is a state!</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        no_of_states = self.<a class="code" href="classverilog_1_1VerilogWriter.html#a3122cf081873ab69f12e5ede767efd0d" title="This function finds the number of states required going through all the basic blocks in the cfg...">find_no_of_states</a>() <span class="comment">#Each instruction is a state!</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">print</span> <span class="stringliteral">&quot;There are&quot;</span>,no_of_states,<span class="stringliteral">&quot;states&quot;</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#a451b3c21e9fe3643484516097b3f57a0">   47</a></span>&#160;        bits_in_state = <a class="code" href="classverilog_1_1VerilogWriter.html#a451b3c21e9fe3643484516097b3f57a0">no_of_bits</a>(no_of_states)</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        self.<a class="code" href="classverilog_1_1VerilogWriter.html#a451b3c21e9fe3643484516097b3f57a0">no_of_bits</a> = bits_in_state</div>
@@ -605,14 +640,16 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Prints the state change verilog code to a given state. </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00127">127</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 
 <p>References <a class="el" href="verilog_8py_source.html#l00047">verilog.VerilogWriter.no_of_bits</a>, and <a class="el" href="verilog_8py_source.html#l00150">verilog.tobinary()</a>.</p>
 
 <p>Referenced by <a class="el" href="verilog_8py_source.html#l00110">verilog.VerilogWriter.print_condition()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00127"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#ab09dc6d0a15ffaa67b28add793781831">  127</a></span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#ab09dc6d0a15ffaa67b28add793781831">print_state_change</a>(self,state):</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        self.out.write(<span class="stringliteral">&quot;\t\t\tstate &lt;= &quot;</span>+<a class="code" href="namespaceverilog.html#aa9aede2b71070152295f77e1a16756a8">tobinary</a>(state,self.<a class="code" href="classverilog_1_1VerilogWriter.html#a451b3c21e9fe3643484516097b3f57a0">no_of_bits</a>)+<span class="stringliteral">&quot;;\n&quot;</span>)</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#ab09dc6d0a15ffaa67b28add793781831" title="Prints the state change verilog code to a given state.">print_state_change</a>(self,state):</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        self.out.write(<span class="stringliteral">&quot;\t\t\tstate &lt;= &quot;</span>+<a class="code" href="namespaceverilog.html#aa9aede2b71070152295f77e1a16756a8" title="Changes a state to binary string of nbits bits.">tobinary</a>(state,self.<a class="code" href="classverilog_1_1VerilogWriter.html#a451b3c21e9fe3643484516097b3f57a0">no_of_bits</a>)+<span class="stringliteral">&quot;;\n&quot;</span>)</div>
 </div>
 </div><!-- fragment -->
 </div>
@@ -631,15 +668,17 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The main function called which invokes the printing of all the basic blocks in a loop. </p>
+
 <p>Definition at line <a class="el" href="verilog_8py_source.html#l00064">64</a> of file <a class="el" href="verilog_8py_source.html">verilog.py</a>.</p>
 
 <p>References <a class="el" href="verilog_8py_source.html#l00072">verilog.VerilogWriter.print_basic_block()</a>.</p>
 <div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="classverilog_1_1VerilogWriter.html#ad519add0dcdd196e0b8a287adec554fe">   64</a></span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#ad519add0dcdd196e0b8a287adec554fe">print_states</a>(self):</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">def </span><a class="code" href="classverilog_1_1VerilogWriter.html#ad519add0dcdd196e0b8a287adec554fe" title="The main function called which invokes the printing of all the basic blocks in a loop.">print_states</a>(self):</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">print</span> <span class="stringliteral">&quot;Printing the state transitions&quot;</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">for</span> bb <span class="keywordflow">in</span> self.cfg.basicblock_list:</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keywordflow">print</span> <span class="stringliteral">&quot;&quot;</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            self.<a class="code" href="classverilog_1_1VerilogWriter.html#ac4e6d8d42a1d3daa1bbc55ee304aba59">print_basic_block</a>(bb)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            self.<a class="code" href="classverilog_1_1VerilogWriter.html#ac4e6d8d42a1d3daa1bbc55ee304aba59" title="prints a basic block in a always @ () block in verilog It loops though all instructions and invokes t...">print_basic_block</a>(bb)</div>
 </div>
 </div><!-- fragment -->
 </div>
@@ -725,7 +764,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 13 2012 20:05:14 for Epsilon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 13 2012 20:12:40 for Epsilon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
