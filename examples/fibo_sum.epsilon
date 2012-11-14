@@ -24,7 +24,6 @@ function (a1 a2 N) {
             fibo = anow
         }
     }
-
 return (fibo sum)
 }
 

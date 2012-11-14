@@ -8,7 +8,7 @@ import cfg
 class VerilogWriter:
     ## The intializer, if takes in cfg and the verilog filename from the VerilogBackend class
     def __init__(self,name,cfg):
-        print "Starting printing to verilog"
+        ##print "Starting printing to verilog"
         ## The output file object
         self.out = open(name+".v",'w+')
         ## cfg object from the epsilon
@@ -22,7 +22,7 @@ class VerilogWriter:
 
     ## The initial printing to file, prints module name and the ports in it.
     def print_init(self):
-        print "Printing the interface"
+        ###print "Printing the interface"
         in_list = self.cfg.input_variable_list
         out_list = self.cfg.output_variable_list
         header = "module "+base_name(self.out.name)+"(\n"
@@ -32,6 +32,7 @@ class VerilogWriter:
                 self.out.write(port.name+',\n')
         for port in out_list:
             self.out.write(port.name+',\n')
+        self.out.write("outReady ,\n")
         self.out.write("clk ,\n")
         self.out.write("reset,\n")
         #now trace back a bit and close the braces after removing the last comma
@@ -43,7 +44,7 @@ class VerilogWriter:
     # BUG TODO : What to do if variable is both input and output.
     # BUG TODO : Scheduling and Allocation is not good!
     def print_registers(self):
-        print "Printing the registers holding variables"
+        ###print "Printing the registers holding variables"
         inputs = self.cfg.input_variable_list
         outputs = self.cfg.output_variable_list
         for var in inputs:
@@ -51,6 +52,7 @@ class VerilogWriter:
                 self.out.write("input [31:0] " + var.name + ";\n")
         self.out.write("input clk;\n")
         self.out.write("input reset;\n")
+        self.out.write("output outReady;\n")
         for var in outputs:
             if var not in inputs:
                 self.out.write("output [31:0] " + var.name + ";\n")
@@ -66,9 +68,10 @@ class VerilogWriter:
             except:
                 pass
         for var in register_variables:
-            self.out.write("reg [31:0] " + var.name + ";\n")
+            self.out.write("reg signed [31:0] " + var.name + ";\n")
+        self.out.write("reg outReady;\n")
         no_of_states = self.find_no_of_states() #Each instruction is a state!
-        print "There are",no_of_states,"states"
+        ##print "There are",no_of_states,"states"
         bits_in_state = no_of_bits(no_of_states)
         self.no_of_bits = bits_in_state #
         self.out.write("reg ["+str(bits_in_state-1)+":0] state;\n\n")
@@ -81,7 +84,7 @@ class VerilogWriter:
         for bb in self.cfg.basicblock_list:
             n_states = n_states + 1 #Each basic block has a conditional or jump instruction
             self.bb_states.append(n_states-1)
-            print bb.identity, n_states-1
+            #print bb.identity, n_states-1
             n_states = n_states +bb.number_of_instructions
         return n_states
 
@@ -89,9 +92,8 @@ class VerilogWriter:
     # blocks in a loop
     def print_states(self):
         self.print_reset(self.next_state(self.cfg.basicblock_list[0]))
-        print "Printing the state transitions"
+        ##print "Printing the state transitions"
         for bb in self.cfg.basicblock_list:
-            print ""
             self.print_basic_block(bb)
 
     ## Print the reset block. Asynchronous reset: resets to state zero whenever
@@ -100,6 +102,7 @@ class VerilogWriter:
         self.out.write("\t//Reset to state zero when reset is made LOW\n")
         self.out.write("\talways@(*) begin\n")
         self.print_if("reset","==","0")
+        self.print_eq("outReady","0")
         self.print_state_change(state)
         self.out.write("\t\tend\n")
         self.out.write("\tend\n\n")
@@ -126,10 +129,12 @@ class VerilogWriter:
         #After all the instructions in instruction list state the jump or conditional statement
         self.print_if("state","==",tobinary(self.bb_states[bb.identity],self.no_of_bits))
         if bb.number_of_children == 1:
-            self.print_state_change(self.bb_states[bb.child.identity])
+            self.print_state_change(self.next_state(bb.child))
         elif bb.number_of_children == 2:
             #2 children \implies comparision?
             self.print_condition(bb, bb.condition_instr)
+        elif bb.number_of_children == 0:
+            self.print_eq("outReady","1")
         self.out.write("\t\tend\n")
         #debugging etc ... ignore : TODO to clean up
         self.out.write("\tend\n")
@@ -141,13 +146,13 @@ class VerilogWriter:
             self.print_arith(instr.lhs.name,instr.rhs_1.name,instr.op.name,instr.rhs_2.name)
         elif isinstance(instr, cfg.EqInstruction):
             self.print_eq(instr.lhs.name,instr.rhs.name)
-        print bb.number_of_instructions, bb.number_of_children
-        try:
-            print bb.condition,bb.condition_instr,"Conditional ins"
-        except:
-            pass
-        for ins in bb.instruction_list:
-            print ins
+        #print bb.number_of_instructions, bb.number_of_children
+        #try:
+        #    print bb.condition,bb.condition_instr,"Conditional ins"
+        #except:
+        #    pass
+        #for ins in bb.instruction_list:
+        #    print ins
 
     ## Formatted arithmetic instruction printing to file
     def print_arith(self,var,lhs,op,rhs):
@@ -186,15 +191,16 @@ class VerilogWriter:
     ## When finished, prints a endmodule
     def print_final(self):
         self.out.write("endmodule\n")
-        print "Finished writing module"
+        ##print "Finished writing module"
         self.out.close()
 
     def print_testbench(self):
-        print "Printing testbench"
+        ##print "Printing testbench"
         self.print_tb_header()
         self.print_instantiation()
         self.print_clock_reset()
         self.print_input()
+        self.print_display_output()
         self.tb_out.write("\nendmodule\n")
 
     def print_tb_header(self):
@@ -206,7 +212,9 @@ class VerilogWriter:
 
     def print_instantiation(self):
         for v in self.cfg.input_variable_list:
-            self.tb_out.write("reg [31:0] "+v.name+";\n")
+            self.tb_out.write("reg signed [31:0] "+v.name+";\n")
+        for v in self.cfg.output_variable_list:
+            self.tb_out.write("wire signed [31:0] "+v.name+";\n")
         self.tb_out.write("reg clk;\nreg reset;\n")
         self.tb_out.write("\n\t"+base_name(self.out.name)+" test(")
         for v in self.cfg.input_variable_list:
@@ -214,18 +222,19 @@ class VerilogWriter:
                 self.tb_out.write("."+v.name+"("+v.name+"[31:0]),")
         for v in self.cfg.output_variable_list:
             self.tb_out.write("."+v.name+"("+v.name+"[31:0]),")
-        self.tb_out.write(".clk(clk),.reset(reset),")
+        self.tb_out.write(".outReady(outReady), .clk(clk), .reset(reset),")
         self.tb_out.seek(-1,1)
         self.tb_out.write(");\n\n")
 
     def print_clock_reset(self):
         self.tb_out.write("\talways #2 clk=~clk;\n")
         self.tb_out.write("\tinitial begin\n")
-        self.tb_out.write("\t\t$dumpvars();\n\t\tclk=0;\n\t\treset=0;\n\t\t#5 reset=1;\n\t\t#1000 $finish();\n")
+        self.tb_out.write("\t\t$dumpvars();\n\t\tclk=0;\n\t\treset=0;\n\t\t#5 reset=1;\n")
         self.tb_out.write("\tend\n")
 
     def print_input(self):
         self.tb_out.write("\tinitial begin\n")
+        self.tb_out.write("\t#4\n")
         for v in self.cfg.input_variable_list:
             got = False
             while not got:
@@ -234,7 +243,23 @@ class VerilogWriter:
                     got = True
                 except:
                     pass
-            self.tb_out.write("\t\t#4 "+v.name+"="+str(val)+";\n")
+            self.tb_out.write("\t\t"+v.name+"="+str(val)+";\n")
+        self.tb_out.write("\tend\n")
+
+    def print_display_output(self):
+        self.tb_out.write("\talways@(*) begin\n")
+        self.tb_out.write("\t\tif (outReady == 1) begin\n")
+        self.tb_out.write("\t\t\t$display(\"")
+        for v in self.cfg.output_variable_list:
+            self.tb_out.write(v.name +"= %d\\n")
+        self.tb_out.write("\",")
+        for v in self.cfg.output_variable_list:
+            self.tb_out.write(" "+v.name+",")
+        self.tb_out.seek(-1,1)
+        self.tb_out.write(");\n")
+        self.tb_out.write("\t\t\t#10\n")
+        self.tb_out.write("\t\t\t$finish();\n")
+        self.tb_out.write("\t\tend\n")
         self.tb_out.write("\tend\n")
 
 def base_name(f):

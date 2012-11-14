@@ -13,7 +13,6 @@ parser.add_option("-i","--input_file",action="store",dest="source_filename",
 
 the_epsilon = epsilon.Epsilon()
 the_epsilon.run_frontend(options.source_filename)
-print options.source_filename
 
 #############################################################################
 #############################################################################
@@ -37,7 +36,7 @@ class VerilogBackend(epsilon.Backend):
     def run(self):
         print 'Verilog backend up and running'
         temp_cfg = self.parent.the_cfg.root
-        self.print_info(temp_cfg)
+        #self.print_info(temp_cfg)
         f = options.source_filename
         self.verilog_writer = VerilogWriter(f[0:len(f)-8],temp_cfg)
         vw = self.verilog_writer

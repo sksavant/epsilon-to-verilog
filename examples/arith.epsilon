@@ -16,5 +16,5 @@ function (op a b) {
             }
         }
     }
-return(a b ans)
+return(ans)
 }
