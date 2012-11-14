@@ -157,7 +157,6 @@ class VerilogWriter:
 
     ## Prints a conditional jump instruction uses several methods
     def print_condition(self,bb,condition):
-        print "Printing condition :P"
         if condition:
             self.print_if(condition.rhs_1.name,condition.op.name,condition.rhs_2.name)
         else:
@@ -191,6 +190,23 @@ class VerilogWriter:
 
     def print_testbench(self):
         print "Printing testbench"
+        _f = self.out.name
+        self.tb_out = open(_f[:len(_f)-2]+".testbench"+_f[len(_f)-2:],"w+")
+        self.tb_out.write("`include \""+base_name(_f)+".v\"\n")
+        self.tb_out.write("//Testbench for "+base_name(_f)+" func tion\n")
+        self.tb_out.write("\nmodule "+base_name(_f)+"_testbench();\n")
+
+
+        self.tb_out.write("\nendmodule\n")
+
+def base_name(f):
+    string = ""
+    for c in f:
+        if c == '/':
+            string=""
+        else:
+            string = string + c
+    return string[0:len(string)-2]
 
 ## Other function to find no_of_bits required for the given no_of_states
 def no_of_bits(states):

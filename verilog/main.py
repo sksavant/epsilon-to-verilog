@@ -83,7 +83,7 @@ vb = VerilogBackend(the_epsilon)
 the_epsilon.register_backend(vb)
 the_epsilon.run_backend()
 
-print "Dumping the cfg"
+#print "Dumping the cfg"
 #the_epsilon.dump_ast()
 #the_epsilon.dump_cfg()
 #the_epsilon.dump_sim_assembly()
