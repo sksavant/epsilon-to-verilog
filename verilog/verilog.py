@@ -114,6 +114,11 @@ class VerilogWriter:
             self.current_state = self.bb_states[bb.identity] + rel_state
             self.print_if("state","==",tobinary(self.current_state, self.no_of_bits))
             #State transitions go here.
+            if rel_state == bb.number_of_instructions:
+                #Final instruction, jump to the state of the basicblock
+                self.print_state_change(self.bb_states[bb.identity])
+            else:
+                self.print_state_change(self.current_state+1)
             self.print_instruction(instr,bb)
             self.out.write("\t\tend\n")
             rel_state = rel_state + 1
