@@ -28,7 +28,8 @@ class VerilogWriter:
         header = "module function(\n"
         self.out.write(header)
         for port in in_list:
-            self.out.write(port.name+',\n')
+            if port not in out_list:
+                self.out.write(port.name+',\n')
         for port in out_list:
             self.out.write(port.name+',\n')
         self.out.write("clk ,\n")
@@ -45,12 +46,31 @@ class VerilogWriter:
         print "Printing the registers holding variables"
         inputs = self.cfg.input_variable_list
         outputs = self.cfg.output_variable_list
-        variables = self.cfg.variable_list
         for var in inputs:
-            self.out.write("input [31:0] " + var.name + ";\n")
+            if var not in outputs:
+                self.out.write("input [31:0] " + var.name + ";\n")
+        self.out.write("input clk;\n")
+        self.out.write("input reset;\n")
         for var in outputs:
-            self.out.write("output [31:0] " + var.name + ";\n")
-        for var in variables:
+            if var not in inputs:
+                self.out.write("output [31:0] " + var.name + ";\n")
+            else:
+                self.out.write("inout [31:0] " + var.name + ";\n")
+
+        register_variables = []
+        for bb in self.cfg.basicblock_list: # Go through the cfg and give register to only those which are not in input or output and
+            try:
+                if isinstance(bb.condition_instr, cfg.Instruction):
+                    for var in [bb.condition_instr.rhs_1,bb.condition_instr.rhs_2]:
+                        if isinstance(var,cfg.Variable) and var not in register_variables:
+                            register_variables.append(var)
+                for ins in bb.instruction_list:
+                    if isinstance(ins, cfg.ArithInstruction) or  isinstance(ins, cfg.EqInstruction):
+                        if ins.lhs not in register_variables:
+                            register_variables.append(ins.lhs)
+            except:
+                pass
+        for var in register_variables:
             if var not in inputs and var not in outputs:
                 self.out.write("reg [31:0] " + var.name + ";\n")
         no_of_states = self.find_no_of_states() #Each instruction is a state!
@@ -168,6 +188,9 @@ class VerilogWriter:
         self.out.write("endmodule\n")
         print "Finished writing module"
         self.out.close()
+
+    def print_testbench(self):
+        print "Printing testbench"
 
 ## Other function to find no_of_bits required for the given no_of_states
 def no_of_bits(states):

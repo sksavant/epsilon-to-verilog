@@ -45,6 +45,7 @@ class VerilogBackend(epsilon.Backend):
         vw.print_registers()
         vw.print_states()
         vw.print_final()
+        vw.print_testbench()
         return
 
     def print_info(self,cfg):
