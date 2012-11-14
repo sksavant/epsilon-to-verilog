@@ -25,7 +25,7 @@ class VerilogWriter:
         print "Printing the interface"
         in_list = self.cfg.input_variable_list
         out_list = self.cfg.output_variable_list
-        header = "module function(\n"
+        header = "module "+base_name(self.out.name)+"(\n"
         self.out.write(header)
         for port in in_list:
             if port not in out_list:
@@ -56,14 +56,9 @@ class VerilogWriter:
                 self.out.write("output [31:0] " + var.name + ";\n")
             else:
                 self.out.write("inout [31:0] " + var.name + ";\n")
-
         register_variables = []
         for bb in self.cfg.basicblock_list: # Go through the cfg and give register to only those which are not in input or output and
             try:
-                if isinstance(bb.condition_instr, cfg.Instruction):
-                    for var in [bb.condition_instr.rhs_1,bb.condition_instr.rhs_2]:
-                        if isinstance(var,cfg.Variable) and var not in register_variables:
-                            register_variables.append(var)
                 for ins in bb.instruction_list:
                     if isinstance(ins, cfg.ArithInstruction) or  isinstance(ins, cfg.EqInstruction):
                         if ins.lhs not in register_variables:
@@ -71,8 +66,7 @@ class VerilogWriter:
             except:
                 pass
         for var in register_variables:
-            if var not in inputs and var not in outputs:
-                self.out.write("reg [31:0] " + var.name + ";\n")
+            self.out.write("reg [31:0] " + var.name + ";\n")
         no_of_states = self.find_no_of_states() #Each instruction is a state!
         print "There are",no_of_states,"states"
         bits_in_state = no_of_bits(no_of_states)
@@ -94,7 +88,7 @@ class VerilogWriter:
     ## The main function called which invokes the printing of all the basic
     # blocks in a loop
     def print_states(self):
-        self.print_reset(0)
+        self.print_reset(self.next_state(self.cfg.basicblock_list[0]))
         print "Printing the state transitions"
         for bb in self.cfg.basicblock_list:
             print ""
@@ -106,7 +100,7 @@ class VerilogWriter:
         self.out.write("\t//Reset to state zero when reset is made LOW\n")
         self.out.write("\talways@(*) begin\n")
         self.print_if("reset","==","0")
-        self.print_state_change(0)
+        self.print_state_change(state)
         self.out.write("\t\tend\n")
         self.out.write("\tend\n\n")
 
@@ -190,14 +184,37 @@ class VerilogWriter:
 
     def print_testbench(self):
         print "Printing testbench"
+        self.print_tb_header()
+        self.print_instantiation()
+        self.print_clock_reset()
+        self.tb_out.write("\nendmodule\n")
+
+    def print_tb_header(self):
         _f = self.out.name
         self.tb_out = open(_f[:len(_f)-2]+".testbench"+_f[len(_f)-2:],"w+")
         self.tb_out.write("`include \""+base_name(_f)+".v\"\n")
         self.tb_out.write("//Testbench for "+base_name(_f)+" func tion\n")
         self.tb_out.write("\nmodule "+base_name(_f)+"_testbench();\n")
 
+    def print_instantiation(self):
+        for v in self.cfg.input_variable_list:
+            self.tb_out.write("reg [31:0] "+v.name+";\n")
+        self.tb_out.write("reg clk;\nreg reset;\n")
+        self.tb_out.write("\n\t"+base_name(self.out.name)+" test(")
+        for v in self.cfg.input_variable_list:
+            if v not in self.cfg.output_variable_list:
+                self.tb_out.write("."+v.name+"("+v.name+"),")
+        for v in self.cfg.output_variable_list:
+                self.tb_out.write("."+v.name+"("+v.name+"),")
+        self.tb_out.write(".clk(clk),.reset(reset),")
+        self.tb_out.seek(-1,1)
+        self.tb_out.write(");\n\n")
 
-        self.tb_out.write("\nendmodule\n")
+    def print_clock_reset(self):
+        self.tb_out.write("\talways #2 clk=~clk;\n")
+        self.tb_out.write("\tinitial begin\n")
+        self.tb_out.write("\t\t$dumpvars();\n\t\tclk=0;\n\t\treset=0;\n\t\t#5 reset=1;\n")
+        self.tb_out.write("\tend\n")
 
 def base_name(f):
     string = ""
