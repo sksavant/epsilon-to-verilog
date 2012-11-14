@@ -1,3 +1,6 @@
+import sys
+sys.path.append('$newhome/epsilon/epsilon-1.0/epsilon_package/')
+import cfg
 
 ## This class consists of functions which write to a verilog file
 # Each instruction is considered a state and the transitions are defined in
@@ -6,8 +9,16 @@ class VerilogWriter:
     ## The intializer, if takes in cfg and the verilog filename from the VerilogBackend class
     def __init__(self,name,cfg):
         print "Starting printing to verilog"
+        ## The output file object
         self.out = open(name+".v",'w+')
+        ## cfg object from the epsilon
         self.cfg = cfg
+        ## No. of  bits required to represent states
+        self.no_of_bits = 0
+        ## Current state
+        self.current_state = 0
+        ## Denotes the state number of each basicblock, used to make the state determining easier.## Denotes the state number of each basicblock, used to make the state determining easier.
+        self.bb_states = []
 
     ## The initial printing to file, prints module name and the ports in it.
     def print_init(self):
@@ -21,14 +32,15 @@ class VerilogWriter:
         for port in out_list:
             self.out.write(port.name+',\n')
         self.out.write("clk ,\n")
+        self.out.write("reset,\n")
         #now trace back a bit and close the braces after removing the last comma
         self.out.seek(-2,1)
         self.out.write(");\n")
 
-    ## BUG TODO : What to do if variable is both input and output.
-    # BUG TODO : Scheduling and Allocation is not good!
-    # This function prints the input output port declarations and other
+    ## This function prints the input output port declarations and other
     # registers to the verilog file
+    # BUG TODO : What to do if variable is both input and output.
+    # BUG TODO : Scheduling and Allocation is not good!
     def print_registers(self):
         print "Printing the registers holding variables"
         inputs = self.cfg.input_variable_list
@@ -44,7 +56,7 @@ class VerilogWriter:
         no_of_states = self.find_no_of_states() #Each instruction is a state!
         print "There are",no_of_states,"states"
         bits_in_state = no_of_bits(no_of_states)
-        self.no_of_bits = bits_in_state
+        self.no_of_bits = bits_in_state #
         self.out.write("reg ["+str(bits_in_state-1)+":0] state;\n\n")
 
     ## This function finds the number of states required going through all the
@@ -62,10 +74,21 @@ class VerilogWriter:
     ## The main function called which invokes the printing of all the basic
     # blocks in a loop
     def print_states(self):
+        self.print_reset(0)
         print "Printing the state transitions"
         for bb in self.cfg.basicblock_list:
             print ""
             self.print_basic_block(bb)
+
+    ## Print the reset block. Asynchronous reset: resets to state zero whenever
+    # reset is LOW
+    def print_reset(self,state):
+        self.out.write("\t//Reset to state zero when reset is made LOW\n")
+        self.out.write("\talways@(*) begin\n")
+        self.print_if("reset","==","0")
+        self.print_state_change(0)
+        self.out.write("\t\tend\n")
+        self.out.write("\tend\n\n")
 
     ## prints a basic block in a always @ () block in verilog
     # It loops though all instructions and invokes the printing of them
@@ -93,7 +116,10 @@ class VerilogWriter:
 
     ## Prints the  arithmetic instruction with lhs op and rhs
     def print_instruction(self, instr, bb):
-        self.print_arith(instr.lhs.name,instr.rhs_1.name,instr.op.name,instr.rhs_2.name)
+        if isinstance(instr, cfg.ArithInstruction):
+            self.print_arith(instr.lhs.name,instr.rhs_1.name,instr.op.name,instr.rhs_2.name)
+        elif isinstance(instr, cfg.EqInstruction):
+            self.print_eq(instr.lhs.name,instr.rhs.name)
         print bb.number_of_instructions, bb.number_of_children
         try:
             print bb.condition,bb.condition_instr,"Conditional ins"
@@ -104,23 +130,26 @@ class VerilogWriter:
 
     ## Formatted arithmetic instruction printing to file
     def print_arith(self,var,lhs,op,rhs):
-        self.out.write("\t\t\t"+var+" <= "+lhs+" "+op+" "+rhs+";\n")
+        self.out.write("\t\t\t"+str(var)+" <= "+str(lhs)+" "+str(op)+" "+str(rhs)+";\n")
+
+    def print_eq(self,lhs,rhs):
+        self.out.write("\t\t\t"+str(lhs)+" <= "+str(rhs)+";\n")
 
     ## Prints a conditional jump instruction uses several methods
     def print_condition(self,bb,condition):
         print "Printing condition :P"
         self.print_if(condition.rhs_1.name,condition.op.name,condition.rhs_2.name)
         self.print_state_change(self.next_state(bb.child_true))
-        self.out.write("\t\telse begin\n")
+        self.out.write("\t\tend else begin\n")
         self.print_state_change(self.next_state(bb.child_false))
         self.out.write("\t\tend\n")
 
     ## Gives the next state number given the next basicblock to jump to
     def next_state(self,next_bb):
         if next_bb.number_of_instructions:
-            next_state = self.bb_states[next_bb.identity]
-        else:
             next_state = self.bb_states[next_bb.identity]+1
+        else:
+            next_state = self.bb_states[next_bb.identity]
         return next_state
 
     ## Prints the state change verilog code to a given state
