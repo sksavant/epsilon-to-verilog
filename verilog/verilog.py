@@ -109,6 +109,7 @@ class VerilogWriter:
     def print_basic_block(self,bb):
         self.out.write("\t// Corresponding code for BasicBlock "+str(bb.identity)+"\n")
         self.out.write("\talways@ (negedge clk) begin\n")
+        self.out.write("\tif (reset == 1) begin\n")
         rel_state = 1
         for instr in bb.instruction_list:
             self.current_state = self.bb_states[bb.identity] + rel_state
@@ -131,6 +132,7 @@ class VerilogWriter:
             self.print_condition(bb, bb.condition_instr)
         self.out.write("\t\tend\n")
         #debugging etc ... ignore : TODO to clean up
+        self.out.write("\tend\n")
         self.out.write("\tend\n\n")
 
     ## Prints the  arithmetic instruction with lhs op and rhs
@@ -192,6 +194,7 @@ class VerilogWriter:
         self.print_tb_header()
         self.print_instantiation()
         self.print_clock_reset()
+        self.print_input()
         self.tb_out.write("\nendmodule\n")
 
     def print_tb_header(self):
@@ -208,9 +211,9 @@ class VerilogWriter:
         self.tb_out.write("\n\t"+base_name(self.out.name)+" test(")
         for v in self.cfg.input_variable_list:
             if v not in self.cfg.output_variable_list:
-                self.tb_out.write("."+v.name+"("+v.name+"),")
+                self.tb_out.write("."+v.name+"("+v.name+"[31:0]),")
         for v in self.cfg.output_variable_list:
-                self.tb_out.write("."+v.name+"("+v.name+"),")
+            self.tb_out.write("."+v.name+"("+v.name+"[31:0]),")
         self.tb_out.write(".clk(clk),.reset(reset),")
         self.tb_out.seek(-1,1)
         self.tb_out.write(");\n\n")
@@ -218,7 +221,20 @@ class VerilogWriter:
     def print_clock_reset(self):
         self.tb_out.write("\talways #2 clk=~clk;\n")
         self.tb_out.write("\tinitial begin\n")
-        self.tb_out.write("\t\t$dumpvars();\n\t\tclk=0;\n\t\treset=0;\n\t\t#5 reset=1;\n")
+        self.tb_out.write("\t\t$dumpvars();\n\t\tclk=0;\n\t\treset=0;\n\t\t#5 reset=1;\n\t\t#1000 $finish();\n")
+        self.tb_out.write("\tend\n")
+
+    def print_input(self):
+        self.tb_out.write("\tinitial begin\n")
+        for v in self.cfg.input_variable_list:
+            got = False
+            while not got:
+                try:
+                    val = int(raw_input("Give the value of "+v.name+" :"))
+                    got = True
+                except:
+                    pass
+            self.tb_out.write("\t\t#4 "+v.name+"="+str(val)+";\n")
         self.tb_out.write("\tend\n")
 
 def base_name(f):
