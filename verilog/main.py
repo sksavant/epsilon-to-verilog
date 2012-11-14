@@ -84,6 +84,6 @@ the_epsilon.run_backend()
 
 print "Dumping the cfg"
 #the_epsilon.dump_ast()
-the_epsilon.dump_cfg()
+#the_epsilon.dump_cfg()
 #the_epsilon.dump_sim_assembly()
 #the_epsilon.run_simulator()

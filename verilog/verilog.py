@@ -138,7 +138,10 @@ class VerilogWriter:
     ## Prints a conditional jump instruction uses several methods
     def print_condition(self,bb,condition):
         print "Printing condition :P"
-        self.print_if(condition.rhs_1.name,condition.op.name,condition.rhs_2.name)
+        if condition:
+            self.print_if(condition.rhs_1.name,condition.op.name,condition.rhs_2.name)
+        else:
+            self.print_if(bb.condition.name,"==",1)
         self.print_state_change(self.next_state(bb.child_true))
         self.out.write("\t\tend else begin\n")
         self.print_state_change(self.next_state(bb.child_false))
