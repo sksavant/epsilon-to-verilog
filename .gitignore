@@ -1,0 +1,12 @@
+*.pyc
+*.dot
+*.out
+*.v
+*~
+*.log
+*.pdf
+*.dvi
+*.aux
+*.bak
+.*
+*.vcd
