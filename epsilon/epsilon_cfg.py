@@ -1,4 +1,4 @@
-import sim
+import epsilon_sim as sim
 
 class Numeric:
 	def aa(self):
@@ -98,27 +98,57 @@ class BasicBlock:
 		self.child_true = None
 		self.child_false = None
 		self.number_of_instructions = 0
+		self.used_variables = []
+		self.defined_variables = []
 		return
 	
 	def add_instruction (self,instr):
 		assert(isinstance(instr,Instruction))
 		self.number_of_instructions += 1
 		self.instruction_list.append(instr)
+		if instr.lhs not in self.defined_variables:
+			if isinstance(instr.lhs,Variable):
+				self.defined_variables.append(instr.lhs)
+		if isinstance(instr,EqInstruction):
+			if isinstance(instr.rhs,Variable):
+				if instr.rhs not in self.used_variables:
+					self.used_variables.append(instr.rhs)
+		else:
+			if isinstance(instr.rhs_1,Variable):
+				if instr.rhs_1 not in self.used_variables:
+					self.used_variables.append(instr.rhs_1)
+			if isinstance(instr.rhs_2,Variable):
+				if instr.rhs_2 not in self.used_variables:
+					self.used_variables.append(instr.rhs_2)
+			
+		return
 
 	def set_child_true(self,bb):
 		assert(isinstance(bb,BasicBlock))
 		self.child_true = bb
+		return
 
 	def set_child_false(self,bb):
 		assert(isinstance(bb,BasicBlock))
 		self.child_false = bb
+		return
 	
 	def set_condition(self,condition,condition_instr):
 		assert(isinstance(condition,Numeric))
 		assert(isinstance(condition_instr,CmpInstruction) or (condition_instr==None))
 		self.condition = condition
 		self.condition_instr = condition_instr
-	
+		if condition_instr is not None:
+			if condition_instr.lhs not in self.defined_variables:
+				if isinstance(condition_instr.lhs,Variable):
+					self.defined_variables.append(condition_instr.lhs)
+			if isinstance(condition_instr.rhs_1,Variable):
+				if condition_instr.rhs_1 not in self.used_variables:
+					self.used_variables.append(condition_instr.rhs_1)
+			if isinstance(condition_instr.rhs_2,Variable):
+				if condition_instr.rhs_2 not in self.used_variables:
+					self.used_variables.append(condition_instr.rhs_2)
+		
 	def clean_up(self):
 		if self.child_true == self.child_false:
 			self.child = self.child_true
@@ -139,9 +169,11 @@ class BasicBlock:
 			print 'BasicBlock',self.identity,':: child =',self.child.identity
 		elif self.number_of_children is 2:
 			print 'BasicBlock',self.identity,':: child_true =',self.child_true.identity,' | child_false = ',self.child_false.identity,'| condition = ',self.condition.name
-			self.condition_instr.show()
 		for inst in self.instruction_list:
 			inst.show()
+		if self.number_of_children is 2:
+			if not self.condition_instr == None:
+				self.condition_instr.show()
 		print '\n'
 			
 			
@@ -152,6 +184,7 @@ class Function:
 		self.variable_list = []
 		self.input_variable_list = []
 		self.output_variable_list = []
+	
 		return
 	
 	def add_basicblock(self,bb):
@@ -174,7 +207,7 @@ class Function:
 		assert(isinstance(var,Variable))
 		self.variable_list.append(var)
 	
-	def get_variable_or_contant(self,numeric):
+	def get_variable_or_constant(self,numeric):
 		assert(isinstance(numeric,str) or isinstance(numeric,int))
 		if isinstance(numeric,str):
 			for v in self.variable_list:

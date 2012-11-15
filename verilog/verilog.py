@@ -1,6 +1,5 @@
 import sys
-sys.path.append('$newhome/epsilon/epsilon-1.0/epsilon_package/')
-import cfg
+import epsilon_cfg as cfg
 
 ## This class consists of functions which write to a verilog file
 # Each instruction is considered a state and the transitions are defined in

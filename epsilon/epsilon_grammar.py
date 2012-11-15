@@ -1,7 +1,7 @@
 import ply.yacc as yacc
-import eps_lexer
-import ast
-tokens = eps_lexer.tokens
+import epsilon_lexer
+import epsilon_ast as ast
+tokens = epsilon_lexer.tokens
 
 def p_program(p):
 	'''program : function '''

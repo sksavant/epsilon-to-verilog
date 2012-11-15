@@ -1,6 +1,5 @@
-import sys
+#!/usr/bin/python
 from optparse import OptionParser
-sys.path.append('$newhome/epsilon/epsilon-1.0/epsilon_package/')
 
 import epsilon
 from verilog import VerilogWriter
