@@ -2,12 +2,16 @@ epsilon-to-verilog is a minimalistic educational hardware compiler developed as 
 
 To get started with this tool, refer to docs/ folder
 
-append the PYTHONPATH environment variable with the complete path of the core/ folder
+(On Ubuntu running
+$ chmod +x build_depend_doc.sh
+$ ./build_depend_doc.sh
+will install all the dependencies and make the docuementation)
+Append the PYTHONPATH environment variable with the complete path of the core/ folder
 	cd verilog
 	python main.py -i ../examples/sum_till_n.epsilon
 
 This would result in two verilog files being generated: "sum_till_n.v"
 and "sum_till_n.testbench.v" in the examples/ folder. To test the correctness
-of the generated verilog files, exevute "iverilog sum_till_n.testbench.v"
+of the generated verilog files, execute "iverilog sum_till_n.testbench.v"
 This would result in a binary file and a vcd file.
 
