@@ -1,6 +1,7 @@
 epsilon-to-verilog is a minimalistic educational hardware compiler developed as a course project for EE677 at IIT Bombay.
 
 To get started with this tool, refer to docs/ folder
+Also, you can get screenshots showing what to do and how to use from the [Downloads](https://github.com/savvy2020/epsilon-to-verilog/downloads) page of the repo.
 
 (On Ubuntu running
 $ chmod +x build_depend_doc.sh
